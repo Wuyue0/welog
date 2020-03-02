@@ -68,13 +68,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-src文件 每个目录解释
+### src文件 每个目录解释
 
-assets            静态资源，存放 字体、图片、css hack 等
-components        建立公共组件文件夹，这是放公共组件的
-layouts           建立布局文件夹  确定好你的项目布局样式
-constants         全局常亮文件夹  存放全局常亮
-helpers           公共函数文件夹  存放公共函数、一些插件的启动配置函数
-modules           我们具体的功能模块  存放我们项目的实际页面
-services          接口文件夹  存放所有请求
-store             装redux的
+assets      ---------        静态资源，存放 字体、图片、css hack 等
+components  ---------        建立公共组件文件夹，这是放公共组件的
+layouts     ---------        建立布局文件夹  确定好你的项目布局样式
+constants   ---------        全局常亮文件夹  存放全局常亮
+helpers     ---------        公共函数文件夹  存放公共函数、一些插件的启动配置函数
+modules     ---------        我们具体的功能模块  存放我们项目的实际页面
+services    ---------        接口文件夹  存放所有请求
+store       ---------        装redux的
