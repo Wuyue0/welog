@@ -1,0 +1,480 @@
+﻿1.安装mysql初始化密码  
+  mysql --initialize --console
+2.安装服务
+  mysqld --install 服务名
+3.启动mysql服务  关闭mysql服务
+  net start mysql  
+  net stop mysql
+4.删除mysql服务
+  sc  delete  MYSQL/mysqld -remove 
+5.查询名为mysql 服务
+  sc query mysql
+ 
+6.登录mysql  mysql -u root -p
+7.修改mysql密码 
+  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
+  
+8.mysql 参数 
+  查看mysql -v  版本
+  退出命令  exit 或者 quit  或者\q
+
+mysql的常用命令
+   mysaladmin -u用户名 -p旧密码 password
+
+   查看数据库 show databases;
+   use 数据库名称
+   select database() 显示当前连接的数据库
+   select version() 数据库版本
+   select now()	  连接的时间
+   select user()   连接的用户
+
+
+9.忘记密码的办法
+  先停止mysql服务 
+  开启跳过验证密码的mysql服务
+    mysqld --console  --skip-grant-tables --shared-memory 
+  打开一个新的cmd窗口，启动mysql服务 mysql -u root -p
+  输入密码直接按空格跳过
+  将密码置空
+  use mysql 
+  update user set authentication_string=’’ where user=‘root’;
+  exit
+
+10、数据表创建 creat database 数据库名字;
+    数据库名字命名规则：
+
+ 	由字母数字下划线、@、#和$符号组成
+        首字母不能是数字和$
+        不允许是保留字
+        不允许有空格和特殊字符
+        长度小于128位
+
+
+  删除数据库 drop database 数据库名字
+
+
+  查看数据库下的表  show tables [from tbl_name]  注意在查看当前数据库下的表可以省略后边的内容;
+  查看数据表的结构  show columns from 表名字; 
+                   describe 表名 
+                   desc 表名
+
+  查看创建表的语句  show create table 表名;
+
+
+
+  修改表名： alter table 旧的表名 rename  [to] 新的表名
+  添加列：
+        末尾添加列
+        alter table 表名 add 新列名数据 类型
+        开头添加列
+        alter table 表名 add 新列名数据 类型 first
+        指定的位置添加列
+        alter table 表名 add 新列名数据 类型  after 列名
+
+  修改列名：
+      alter  table 表名 change column 旧的列名 新的列名 类型
+
+
+  修改列的数据类型:
+     alter table 表名 modify 列名 数据类型;
+
+  修改列的排序位置:
+     alter table 表名 modify 列名 数据类型 after|first 列名
+    
+  删除列:
+     alter  table 表名 drop 列名；
+  
+
+  //删除数据库表     
+  drop table 数据库表1,表2...
+  drop table if exists t3,t4;
+
+
+ 
+
+ 添加非空约束:
+   
+   通过修改表的方式添加:
+    ALERT TABLE 表名 MODIFY 列名 类型<约束条件>;
+     如果想删除约束条件的话只需要不写约束条件就ok了
+
+  主键约束:要求主键列的数据唯一，并且不能为空，主键能够唯一地标识表中的一条记录.
+    添加主键: 列名 数据类型 primary key     (在定义列的同时制定主键)
+                    ||
+              [constraint <约束名> ] primary key(列名)                (在列定义的后边指定主键)
+    删除主键: alter table bookinfo drop primary key;
+
+
+  唯一约束:要求该列唯一，允许为空，唯一约束可以保证一列或者几列不出现重复值.
+
+    添加唯一约束: 创建表的时候添加  unique（）
+
+
+    删除 drop key  约束名称
+
+
+  默认约束:指定某列的默认值;
+     
+    添加默认约束: 列名 数据类型 default 默认值
+    删除默认约束: alter table 表名 alter column 列名 drop default;
+    修改默认约束: alter table 表名 alter column 列名 default 默认值
+     
+  外键约束： 两个表的数据之间建立连接
+    
+    创建表添加外键约束: constraint 外键名称 foreign key(列名) references 子表（列名）
+    修改表添加外键约束: alter table bookinfo add foreign key(列名) references 子表（列名）
+    删除外键约束: alter table bookinfo drop foreign key 外键名称
+
+
+
+1. SQL DML：数据操作指令#
+   查询和更新指令构成了 SQL 的 DML 部分：
+
+1.1 select - 从表中获取数据
+      ---从数据库表中获取数据
+      ---语法
+      --- # 获取表中某一列数据 select 列名称 from 表名称;
+          # 或获取表中所有数据 select * from 表名称;
+1.2 update - 修改表中数据
+      ---更新数据库表中的数据
+      ---语法
+      --- # 更新列中某个值 update 表名称 set 列名称 = 新值 where 列名称 = 某值;
+          # 跟新某一行中若干列 update 表名称 set 列名称1 = 新值1,列名称2 = 新值2 where 列名称 = 某值;
+1.3 delete - 删除表中数据#
+      ---从数据库表中删除数据
+      ---语法
+      --- # 删除表中的某行 delete from 表名称 where 列名称 = 值;
+          # 删除所有行（在不删除表的情况下删除所有的行。这意味着表的结构、属性和索引都是完整的：）
+            delete from 表名称;
+            delete * from 表名称;
+1.5 distinct - 从表中获取某列中不同的值
+      ---关键词 distinct 用于返回唯一不同的值，仅仅列出不同（distinct）的值的列。
+      ---语法
+         select distinct 列名称 from 表名称;
+1.6 where - 根据条件获取表中数据
+      ---如需有条件地从表中选取数据，可将 where 子句添加到 select 语句。
+      ---语法
+      select 列名称 from 表名称 where 列 运算符 值;
+
+1.7 and&or - 在 where 子语句中把两个或多个条件结合起来
+      ---and 和 or 可在 where 子语句中把两个或多个条件结合起来。
+      ---如果第一个条件和第二个条件都成立，则 and 运算符显示一条记录。
+      ---如果第一个条件和第二个条件中只要有一个成立，则 or 运算符显示一条记录。
+      ---语法
+      select 列名称 from 表名称 where 列 运算符 值 and 列 运算符 值;
+      select 列名称 from 表名称 where 列 运算符 值 or 列 运算符 值;
+
+1.8 order by - 根据指定的列对结果集进行排序#
+      ---ORDER BY 语句用于根据指定的列对结果集进行排序。
+      ---ORDER BY 语句默认按照升序对记录进行排序。
+      ---如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
+      ---语法
+        select 列名称1,列名称2 from 表名称 order by 列名称1 [asc(desc)];
+        # 先按列名称1排序，然后以列名称3排序
+        select 列名称1,列名称2,列名称3 from 表名称 order by 列名称1 [asc(desc)],列名称3 [asc(desc)];
+1.9 向MySQL数据表插入数据通用的 INSERT INTO SQL语法  提示：如果数据是字符型，必须使用单引号或者双引号，如："value"。
+        INSERT INTO 表的名字(列名a,列名b,列名c) VALUES(值1,值2,值3);
+
+        例子:
+        
+        INSERT INTO employee(id,name,phone) VALUES(01,'Tom',110110110);
+
+        INSERT INTO employee VALUES(02,'Jack',119119119);
+
+        INSERT INTO employee(id,name) VALUES(03,'Rose');
+
+        
+
+2. SQL DDL：数据定义语言，创建和删除表格#
+SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束。
+
+
+2.1 数据库相关操作#
+
+
+2.1.1 show databases - 查看数据库列表#
+      ---查看数据库列表
+      ---语法   show databases;
+2.1.2 create database - 创建新数据库#
+      ---创建新数据库
+      ---语法  create database 数据库名称;
+2.1.3 show create database - 查看某个数据库详细信息#
+      ---查看某个数据库详细信息
+      ---语法 show create database 数据库名称；
+2.1.4 alter databese - 修改数据库#
+      ---修改数据库
+      ---语法：# 修改数据库编码格式
+      alter database 数据库名称 charset=编码格式;
+2.1.5 drop database - 删除数据库#
+      ---删除数据库
+      ---语法 drop database 数据库名称;
+
+
+
+2.2 数据表相关操作#
+
+
+2.2.1 show tables - 查看当前数据库下所有数据表#
+      ---查看当前数据库下所有数据表
+      ---语法  show tables;
+
+2.2.2 create table - 创建表#
+      ---创建新表
+      ---语法  # 创建新表，[]中内容可省略
+      create table 表名称
+      (
+        列名称1 数据类型[(最大位数) 约束]，
+        列名称2 数据类型[(最大位数) 约束]，
+        列名称3 数据类型[(最大位数) 约束],
+        ...    
+      ) 
+      engine=引擎名称, charset=编码类型；
+      在 MySQL 中，有三种主要的类型：文本、数字和日期/时间类型。
+
+
+
+      Text 类型：#
+      数据类型	            描述
+      CHAR(size)	         保存固定长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的长度。最多 255 个字符。
+      VARCHAR(size)	       保存可变长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的最大长度。最多 255 个字符。注释：如果值的长度大于 255，则被转换为 TEXT 类型。
+      TINYTEXT	           存放最大长度为 255 个字符的字符串。
+      TEXT	               存放最大长度为 65,535 个字符的字符串。
+      BLOB	               用于 BLOBs (Binary Large OBjects)。存放最多 65,535 字节的数据。
+      MEDIUMTEXT	         存放最大长度为 16,777,215 个字符的字符串。
+      MEDIUMBLOB	         用于 BLOBs (Binary Large OBjects)。存放最多 16,777,215 字节的数据。
+      LONGTEXT	           存放最大长度为 4,294,967,295 个字符的字符串。
+      LONGBLOB	           用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。
+      ENUM(x,y,z,etc.)	    允许你输入可能值的列表。可以在 ENUM 列表中列出最大 65535 个值。如果列表中不存在插入的值，则插入空值。注释：这些值是按照你输入的顺序存储的。可以按照此格式输入可能的值：ENUM('X','Y','Z')
+      SET	与 ENUM 类似，SET 最多只能包含 64 个列表项，不过 SET 可存储一个以上的值。
+
+      Number 类型：
+
+      数据类型             	描述
+      TINYINT(size)	      -128 到 127 常规。0 到 255 无符号*。在括号中规定最大位数。
+      SMALLINT(size)	    -32768 到 32767 常规。0 到 65535 无符号*。在括号中规定最大位数。
+      MEDIUMINT(size)	    -8388608 到 8388607 普通。0 to 16777215 无符号*。在括号中规定最大位数。
+      INT(size)	          -2147483648 到 2147483647 常规。0 到 4294967295 无符号*。在括号中规定最大位数。
+      BIGINT(size)	      -9223372036854775808 到 9223372036854775807 常规。0 到 18446744073709551615 无符号*。在括号中规定最大位数。
+      FLOAT(size,d)	      带有浮动小数点的小数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。
+      DOUBLE(size,d)	    带有浮动小数点的大数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。
+      DECIMAL(size,d)	    作为字符串存储的 DOUBLE 类型，允许固定的小数点。
+
+      * 这些整数类型拥有额外的选项 UNSIGNED。通常，整数可以是负数或正数。如果添加 UNSIGNED 属性，那么范围将从 0 开始，而不是某个负数。
+
+
+      Date 类型：#
+      数据类型         描述
+      DATE()        	日期。格式：YYYY-MM-DD注释：支持的范围是从 '1000-01-01' 到 '9999-12-31'
+      DATETIME()	    *日期和时间的组合。格式：YYYY-MM-DD HH:MM:SS注释：支持的范围是从 '1000-01-01 00:00:00' 到 '9999-12-31 23:59:59'
+      TIMESTAMP()	    *时间戳。TIMESTAMP 值使用 Unix 纪元('1970-01-01 00:00:00' UTC) 至今的描述来存储。格式：YYYY-MM-DD HH:MM:SS注释：支持的范围是从 '1970-01-01 00:00:01' UTC 到 '2038-01-09 03:14:07' UTC
+      TIME()	        时间。格式：HH:MM:SS 注释：支持的范围是从 '-838:59:59' 到 '838:59:59'
+      YEAR()	        2 位或 4 位格式的年。注释：4 位格式所允许的值：1901 到 2155。2 位格式所允许的值：70 到 69，表示从 1970 到 2069。
+
+      * 即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。
+      在 INSERT 或 UPDATE 查询中，TIMESTAMP 自动把自身设置为当前的日期和时间。TIMESTAMP 也接受不同的格式，
+      比如 YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。
+
+
+2.2.3 show create table - 查看某个表的详细信息#
+      ---查看某个表的详细信息
+      ---语法 show create table 表名称;
+
+
+2.2.4 desc - 查看某个表的结构信息#
+      ---查看某个表的结构信息
+      ---语法   desc 表名称;
+
+
+2.2.5 alter table - 在已有的表中添加，修改或删除列#
+      ---alter table语句用于在已有的表中添加，修改或删除列
+      ---语法
+      ---# 在表中添加列
+        alter table 表名称
+        add 列名称 数据类型;
+
+      ---# 删除表中的列
+      alter table 表名称
+      drop column 列名称;
+
+      ---# 修改表中列的数据类型
+      alter table 表名称
+      alter column 列名称 数据类型;
+
+
+2.2.6 drop table - 删除表#
+      ---删除表
+      ---语法  drop table 表名称;
+
+
+2.2.7 truncate table - 删除表内所有数据#
+      ---删除表内的数据，但并不删除表本身
+      ---语法  truncate table 表名称;
+
+
+2.3 索引相关操作#
+
+2.3.1 create index - 创建索引#
+      ---创建索引（搜索键）
+      ---语法
+
+      # 在表中创建一个简单的索引，允许使用重复的值
+        create index 索引名称
+        on 表名称 (列名称1,列名称2,...);   # 列名称规定需要索引的列，如果想降序索引，可以在列名称后加desc
+
+      # 在表中创建一个唯一的索引
+        create unique 索引名称;
+        on 表名称 (列名称1,列名称2,...);
+
+2.3.2 drop index - 删除索引#
+      ---删除索引
+      ---语法
+          # 各数据库有差别，mysql语法如下
+          alter table 表名称
+          drop index 索引名称;
+
+
+
+
+mysql 约束条件
+
+      1. unsigned - 无符号
+      2. zerofill - 0填充
+      3. not mull - 非空
+      4. default - 默认值
+      5. unique - 唯一
+      6. auto_increment - 自增
+      7. primary key - 主键
+      8. foreign key - 外键
+
+MySQL约束条件
+约束条件用于对表中字段进行约束，一般写在某个字段最后，如果有多个约束条件，用空格分隔，创建新表时约束条件的写法如下：
+
+    create table 表名称
+    (
+        字段名称 数据类型[(长度) 约束条件1 约束条件2 ...],
+        ...
+    );
+
+1. unsigned - 无符号#
+  ---说明此字段为无符号整数类型
+  ---语法
+      create table 表名称
+      (
+          字段名称 int unsigned,
+          ...
+      );
+2. zerofill - 0填充#
+    ---定义了数据类型的长度，如果实际位数小于定义的长度，显示时会在左边用0填充
+    ---语法
+        create table 表名称
+        (
+            字段名称 int zerofill,
+            ...
+        );
+3. not mull - 非空#
+      ---在表中插入数据中这个字段不能为空
+      ---语法
+      create table 表名称
+      (
+          字段名称 数据类型(长度) not null,
+          ...
+      );
+4. default - 默认值#
+    ---在表中插入数据时，如果不对有默认值的字段赋值，该字段将使用默认值
+    ---语法
+        create table 表名称
+        (
+            字段名称 数据类型(长度) default 0,      # 默认值0
+            ...
+        );
+5. unique - 唯一#
+    ---在表中插入数据时，该字段的值是唯一的，不能与已有数据的该字段值重复
+    ---语法
+        create table 表名称
+        (
+            字段名称 数据类型(长度) unique,
+            ...
+        );
+
+    联合唯一
+
+    ---单个字段可以重复，但多个字段组合起来是唯一的
+    ---语法
+        create table 表名称
+        (
+            字段名称1 数据类型[(长度) 约束条件],
+            字段名称2 数据类型[(长度) 约束条件],
+            ...,
+            unique(字段名称1,字段名称2)     # 字段名称1和字段名称2是联合唯一的
+        );
+6. auto_increment - 自增#
+        ---在表中插入数据时，如果不对该字段赋值，会自动在已有最大值的基础上+1
+        ---语法
+
+          create table 表名称
+          (
+              字段名称 数据类型(长度) auto_increment,
+              ...
+          );
+7. primary key - 主键#
+          ---主键一般与自增一起使用，也是约束唯一，但它还可以提高查询效率
+          ---在外键中也经常绑定与主键，具体内容请移步外键内容
+          ---语法
+            create table 表名称
+            (
+                字段名称 int primary key auto_increment,
+                ...
+            )
+8. foreign key - 外键#
+    外键是表与表间关系的一种键
+
+    创建表添加外键约束: constraint 外键名称 foreign key(列名) references 子表（列名）
+    修改表添加外键约束: alter table bookinfo add foreign key(列名) references 子表（列名）
+    删除外键约束: alter table bookinfo drop foreign key 外键名称
+
+
+    外键使用时的注意事项：
+
+    1、要求在从表设置外键关系；
+    2、从表的外键列的类型和主表的关联列的类型要求一致或兼容，名称无要求；
+    3、主表的关联列必须是一个key（一般是主键或唯一）；
+    4、插入数据时，先插入主表，再插入从表；删除数据时，先删除从表，再删除主表；
+    5、可以通过以下两种方式来删除主表的记录：
+　　方式一：级联删除：ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE CASCADE;
+　　方式二：级联置空：ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE SET NULL。
+
+
+
+创建数据库，该命令的作用：
+如果数据库不存在则创建，存在则不创建。---    IF NOT EXISTS
+创建数据库，并设定编码集为utf8 ---  CHARSET utf8 COLLATE utf8_general_ci
+---CREATE DATABASE IF NOT EXISTS 数据库名 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+
+
+插入表中的数据:
+
+  所有列插入数据：
+    插入一行数据:
+     （1）inert into 表名(列名1,列名2,.....)values(数值1,数值2.....)
+          注意列名是可以省略的 但是插入的值要一一对应
+    插入多行数据:
+     （2）insert into 表名(column_list)values(数值1,数值2.....),(数值1,数值2.....),(数值1,数值2.....)....;
+    将其他表中的查询结果插入到当前表:
+     （3）INSERT INTO bookcategory SELECT * FROM test WHERE id>5;
+
+    为已有的表添加自增列
+      alter table 表名  modify 列名 数据类型 auto_increment
+    设置默认初始值:
+      alter table  auto_increment=X
+    去掉自增列
+      alter table 表名 modify 列名 数据类型;
+
+
+删除索引 
+  alter table 数据表 drop index 索引名
+
+删除表记录
+  delete from 表名 where 条件                    DELETE FROM readerinfo WHERE card_id='210210199901011111';
+  删除所有的就是不加条件                          DELETE FROM readerinfo
+  删除表记录的另外一个方法就是 先删除表 在创建表    truncate table readerinfo;
