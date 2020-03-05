@@ -1,4 +1,4 @@
-import request from '../helpers/request'
+import request from './request'
 import { stringify } from 'querystring';
 
 // 测试1

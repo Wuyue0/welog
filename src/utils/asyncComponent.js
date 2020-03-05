@@ -1,5 +1,5 @@
 import {PureComponent} from 'react';
-export default class Bundle extends PureComponent {
+export default class AsyncComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
