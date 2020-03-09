@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ORIGIN } from '../constants'
+// import { ORIGIN } from '../constants'
 
 // 添加一个请求拦截器
 axios.interceptors.request.use(config => {
@@ -21,9 +21,10 @@ axios.interceptors.response.use(response => {
 });
 
 export default function request(url, options = {}) {
+  console.log(url)
   return axios({
-    url: /^http/.test(url) ? url : `${ORIGIN}${url}`,
-    method: 'get',
+    url: url,
+    method: 'post',
     // 携带cookie信息
     withCredentials: true,
     ...options,

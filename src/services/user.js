@@ -3,7 +3,7 @@ import { stringify } from 'querystring';
 
 // 测试1
 export function login1(params) {
-  return request(`/xxx/xxx1?${stringify(params)}`)
+  return request(params)
 }
 
 // 测试2

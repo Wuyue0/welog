@@ -1,19 +1,28 @@
 import React from 'react';
-import AsyncComponent from '../utils/asyncComponent';
+import AsyncComponent from '@/utils/asyncComponent';
 
 
+//登录界面
 export const Login = (props) => (
-        <AsyncComponent load={() => import('../page/login')}>
-           {(Login) => <Login {...props}/>}
+        <AsyncComponent load={() => import(/* webpackChunkName: "login" */'@/page/Login')}>
+                {(Login) => <Login {...props}/>}
         </AsyncComponent>
 );
 
 
-// export const Register = (props) => (
-//       <AsyncComponent load={() => import('../../component/register')}>
-//          {(Register) => <Register {...props}/>}
-//       </AsyncComponent>
-// );
+//错误界面404
+export const ErrorPage = (props)=>(
+        <AsyncComponent load={() => import(/* webpackChunkName: "errorPage" */'@/page/ErrorPage')}>
+               {(ErrorPage) => <ErrorPage {...props}/>}
+        </AsyncComponent>
+)
+
+
+export const Register = (props) => (
+      <AsyncComponent load={() => import('@/component/register')}>
+         {(Register) => <Register {...props}/>}
+      </AsyncComponent>
+);
 
 
 // export const Default = (props) => (
