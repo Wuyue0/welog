@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch , Link} from 'react-router-dom';
-import { Login , ErrorPage, Register , Default , Blog} from './Router';
+import { Login , ErrorPage} from './Router';
 const BasicRoute = () => (
     <Router>
       <Switch>

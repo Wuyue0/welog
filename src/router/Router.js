@@ -19,7 +19,7 @@ export const ErrorPage = (props)=>(
 
 
 export const Register = (props) => (
-      <AsyncComponent load={() => import('@/component/register')}>
+      <AsyncComponent load={() => import('@/components/register')}>
          {(Register) => <Register {...props}/>}
       </AsyncComponent>
 );
