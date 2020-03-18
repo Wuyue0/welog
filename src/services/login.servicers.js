@@ -3,19 +3,18 @@ import request from './request'
 export function getAccountInfo() {
   return request({
     method: 'get',
-    url: '/creative/backstage/account'
+    url: '/test/simpleWeather/query?city=%E8%8B%8F%E5%B7%9E&key=dc85b2421cdaa8b36084f4215af09f66'
   })
 }
 
 // 手机号码登录
-export function loginMboile(data) {
+export function login(data) {
   return request({
-    url: '/creative/backstage/public/login',
+    url: '/api/user/login',
     method: 'post',
     data: {
-      loginName: data.loginName,
-      password: data.password,
-      rememberMe: true
+      username: data.loginName,
+      password: data.password
     }
   })
 }

@@ -10,14 +10,13 @@ import { push } from 'react-router-redux';
 //执行处理的动作
 function* loginRequest(data) {
     try {
-        const response = yield call(api.loginMboile, data);
+        const response = yield call(api.login, data);
         if (response.status === 200) {
 
-            let isAdmin = false;
-            setToken(response.data.data)
-            yield put(push('/'))
-
-            yield put(loginSuccess(response.data.data, isAdmin, ''));
+            console.log(1111111111111111111111111,response)
+            setToken(response.data.data.token)
+            // yield put(push('/hello'))
+            // yield put(loginSuccess(response.data.data));
         } else {
             yield put(loginFailure({
                 code: response.status,

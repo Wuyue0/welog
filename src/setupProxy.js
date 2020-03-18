@@ -3,11 +3,18 @@ module.exports = function (app) {
   app.use(createProxyMiddleware('/test',
           {
             target: 'http://apis.juhe.cn',
-            source:false,
             changeOrigin: true,
-            pathRewrite:{
-              "^/test": "/"
-            }
+            pathRewrite: {'^/test' : '/'}
+          }
+      )
+  );
+
+
+  app.use(createProxyMiddleware('/api',
+          {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+            pathRewrite: {'^/api' : '/'}
           }
       )
   )

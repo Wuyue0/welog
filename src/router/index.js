@@ -7,9 +7,18 @@ const BasicRoute = () => (
       <Switch>
         {/* switch作用就是设置不存在的路由显示界面404 */}
 
-        <Route exact path="/" component={Login}/>
-        <Route path="/register" component={ErrorPage}/>
-        <Route path="/login" component={Login}/>
+        <Route exact path="/" render={ () => <Redirect to="/apply" push /> } />
+        <Route path="/404" component={ErrorPage}/>
+        <Route path="/hello" render={
+          ()=>{
+            return <div>
+              欢迎你等录成功!
+            </div>
+          }
+        }/>
+        <Route path="/login" render={() => {
+            return this.props.id_token ?  <Redirect to="/" /> : <Login />
+        }}/>
         <Route render = {
           ()=>{
             return <IndexLayout/>

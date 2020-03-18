@@ -3,11 +3,11 @@ import { getToken , removeToken } from '@/utils/auth';
 import { Modal } from 'antd'
 
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost':'';
+// const baseURL = process.env.NODE_ENV === 'development' ? '/api':'';
 
 
 const service = axios.create({
-  baseURL: baseURL, //api的baseurl
+  // baseURL: baseURL, //api的baseurl
   timeout:90000,
   withCredentials:true
 })

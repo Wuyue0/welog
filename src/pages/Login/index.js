@@ -50,7 +50,7 @@ class Login extends Component {
   handleSubmit = values => {
     console.log('Success:', values);
     this.props.login({
-      loginName: values.loginName,
+      loginName: values.username,
       password: values.password
     })
   };
