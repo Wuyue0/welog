@@ -2,15 +2,14 @@ import { message } from 'antd';
 import * as Login from '../constants';
 import { getToken } from '@/utils/auth'
 
-
-console.log(Login)
-
 const id_token = getToken() ? getToken() : '';
 
-const loginReducer = (state = {
+const initialLoginState = {
     id_token: id_token,
     userInfo: {}
-}, action) => {
+}
+
+const loginReducer = (state = initialLoginState, action) => {
     switch (action.type) {
         case Login.LOGIN_REQUEST:
             return {

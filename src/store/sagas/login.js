@@ -4,7 +4,7 @@ import * as api from '@/services/login.servicers.js'
 import * as Login from '../constants';
 import { loginSuccess, loginFailure } from '../actions/login';
 import { setToken } from '@/utils/auth'
-// import { push } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 
 //执行处理的动作
@@ -15,7 +15,7 @@ function* loginRequest(data) {
 
             let isAdmin = false;
             setToken(response.data.data)
-            // yield put(push('/'))
+            yield put(push('/'))
 
             yield put(loginSuccess(response.data.data, isAdmin, ''));
         } else {
