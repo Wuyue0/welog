@@ -4,7 +4,7 @@ import AsyncComponent from '@/utils/asyncComponent';
 
 //登录界面
 export const Login = (props) => (
-        <AsyncComponent load={() => import(/* webpackChunkName: "login" */'@/page/Login')}>
+        <AsyncComponent load={() => import(/* webpackChunkName: "login" */'@/pages/Login')}>
                 {(Login) => <Login {...props}/>}
         </AsyncComponent>
 );
@@ -12,34 +12,7 @@ export const Login = (props) => (
 
 //错误界面404
 export const ErrorPage = (props)=>(
-        <AsyncComponent load={() => import(/* webpackChunkName: "errorPage" */'@/page/ErrorPage')}>
+        <AsyncComponent load={() => import(/* webpackChunkName: "errorPage" */'@/pages/ErrorPage')}>
                {(ErrorPage) => <ErrorPage {...props}/>}
         </AsyncComponent>
 )
-
-
-export const Register = (props) => (
-      <AsyncComponent load={() => import('@/components/register')}>
-         {(Register) => <Register {...props}/>}
-      </AsyncComponent>
-);
-
-
-// export const Default = (props) => (
-//         <AsyncComponent load={() => import('../../component/default')}>
-//               {(Default) => <Default {...props}/>}
-//         </AsyncComponent>
-// );
-
-// export const Blog = (props) => (
-//        <AsyncComponent load={() => import('../../component/blog')}>
-//              {(Blog) => <Blog {...props}/>}
-//         </AsyncComponent>
-// );
-
-
-// export const User = (props) => ( 
-//         <AsyncComponent load={() => import('../../component/user')}>
-//              {(User) => <User {...props}/>}
-//         </AsyncComponent>
-// );

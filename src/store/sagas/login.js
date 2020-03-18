@@ -1,10 +1,10 @@
 // saga模块化引入
 import {put, call, take, fork} from 'redux-saga/effects'
 import * as api from '@/services/login.servicers.js'
-import { LOGIN_REQUEST } from '../actions/actionstype';
+import * as Login from '../constants';
 import { loginSuccess, loginFailure } from '../actions/login';
 import { setToken } from '@/utils/auth'
-import { push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 
 
 //执行处理的动作
@@ -15,7 +15,7 @@ function* loginRequest(data) {
 
             let isAdmin = false;
             setToken(response.data.data)
-            yield put(push('/'))
+            // yield put(push('/'))
 
             yield put(loginSuccess(response.data.data, isAdmin, ''));
         } else {
@@ -36,7 +36,7 @@ function* loginRequest(data) {
 export function* loginSagas() {
 
     while (true) {
-        const resData = yield take(LOGIN_REQUEST);
+        const resData = yield take(Login.LOGIN_REQUEST);
         yield fork(loginRequest, resData.payload);
     }
 

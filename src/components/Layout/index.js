@@ -1,4 +1,4 @@
-import react , { Component } from 'react';
+import React , { Component } from 'react';
 
 
 
@@ -11,3 +11,5 @@ class IndexLayout extends Component {
         )
     }
 }
+
+export default IndexLayout;

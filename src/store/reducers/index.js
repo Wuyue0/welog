@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import user from './user'
+import login from './login'
 
 const rootReducer = {
-  user,
+  login,
 }
 
 export const createReducer = asyncReducers => combineReducers({

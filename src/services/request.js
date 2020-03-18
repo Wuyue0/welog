@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { getToken , removeToken } from '@/utils/auth';
+import { Modal } from 'antd'
 
 
-// const baseURL = process.env.NODE_ENV === 'development' ? '':'';
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost':'';
 
 
 const service = axios.create({
@@ -22,6 +23,12 @@ service.interceptors.request.use(config => {
   console.log('请求出错了')
   return Promise.reject(error);
 })
+
+
+function logout() {
+  removeToken()
+  window.location.reload();
+}
 
 // 添加一个响应拦截器 respone
 axios.interceptors.response.use(

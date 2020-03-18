@@ -23,7 +23,6 @@ class Login extends Component {
   };
 
   componentDidMount = async () => {
-    // console.log(132213123)
     //   axios.get('/users/hello')
     //   .then(res=>{
     //       console.log('res=>',res);            
