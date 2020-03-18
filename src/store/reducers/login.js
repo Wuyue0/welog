@@ -6,6 +6,7 @@ const id_token = getToken() ? getToken() : '';
 
 const initialLoginState = {
     id_token: id_token,
+    //代表用户的信息
     userInfo: {}
 }
 

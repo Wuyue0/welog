@@ -9,7 +9,7 @@ export const loginSuccess = (id_token) => {
 };
 
 export const loginFailure = (data) => {
-  return { type: Login.LOGIN_FAILURE, payload: { status: data.status, msg: data.msg } };
+  return { type: Login.LOGIN_FAILURE, payload: { status: data.code, msg: data.msg } };
 };
 
 export const logoutRequest = () => {

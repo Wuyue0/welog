@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 import Background from '@/components/Background';
 import { connect } from 'react-redux';
 import { loginRequest } from '@/store/actions/login';
+import { withRouter } from 'react-router'
 import './index.less'
 
 
@@ -13,6 +14,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
+@withRouter
 @connect(
   state => {
     return {

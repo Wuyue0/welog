@@ -11,22 +11,21 @@ import { push } from 'react-router-redux';
 function* loginRequest(data) {
     try {
         const response = yield call(api.login, data);
-        if (response.status === 200) {
-
-            console.log(1111111111111111111111111,response)
-            setToken(response.data.data.token)
-            // yield put(push('/hello'))
-            // yield put(loginSuccess(response.data.data));
-        } else {
+        console.log('返回的数据',response)
+        if (response.code === 0) {
+            setToken(response.data.token)
+            yield put(push('/'))
+            yield put(loginSuccess(response.data.token));
+        }  else {
             yield put(loginFailure({
-                code: response.status,
-                msg: response.data.message
+                code: response.code,
+                msg: response.msg
             }));
         }
     } catch (e) {
         yield put(loginFailure({
-            code: 404,
-            msg: e.response.data.message
+            code: e.code,
+            msg: e.msg
         }));
     }
 }
