@@ -1,9 +1,13 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function (app) {
-  app.use(createProxyMiddleware('/users/hello',
+  app.use(createProxyMiddleware('/test',
           {
-            target: 'http://localhost:3001',
-            changeOrigin: true
+            target: 'http://apis.juhe.cn',
+            source:false,
+            changeOrigin: true,
+            pathRewrite:{
+              "^/test": "/"
+            }
           }
       )
   )

@@ -6,14 +6,10 @@ import BasicRoute from './router';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 
-const App = (
+ReactDOM.render(
     <Provider store={store}> 
         <BasicRoute />
-    </Provider>
-)
-
-ReactDOM.render(
-    <BasicRoute />,
+    </Provider>,
     document.getElementById('root')
 );
 

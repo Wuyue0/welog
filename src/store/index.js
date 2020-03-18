@@ -1,20 +1,33 @@
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import rootReducer, { createReducer } from './reducers'
-import rootSaga from './sagas'
+import { createStore, applyMiddleware } from 'redux';           //中间件和store
+import createSagaMiddleware from 'redux-saga';                  //引入sagamiddleware
+import { composeWithDevTools } from 'redux-devtools-extension'; // 调试工具
+import rootReducer, { createReducer } from './reducers';        //引入reducers
+import rootSaga from './sagas';                                 //引入rootsaga
+
+// 创建saga中间件
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware]
 
 const configureStore = (initialState = {}) => {
+
+  // 配置saga和store做链接 传入reducer
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middlewares),
+    composeWithDevTools(
+      applyMiddleware(...middlewares)
+    )
   )
+
+  //启动saga
   sagaMiddleware.run(rootSaga)
+
+
   store.runSaga = sagaMiddleware.run
   store.asyncReducers = store.asyncReducers || {}
   store.asyncSagas = store.asyncSagas || []
+
+
   return store
 }
 

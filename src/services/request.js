@@ -1,33 +1,49 @@
-import axios from 'axios'
-// import { ORIGIN } from '../constants'
+import axios from 'axios';
+import { getToken , removeToken } from '@/utils/auth';
 
-// 添加一个请求拦截器
-axios.interceptors.request.use(config => {
-  return config    // 暂时没啥好写的，我们只是个骨架
+
+// const baseURL = process.env.NODE_ENV === 'development' ? '':'';
+
+
+const service = axios.create({
+  baseURL: baseURL, //api的baseurl
+  timeout:90000,
+  withCredentials:true
+})
+
+// 添加一个请求拦截器  request
+service.interceptors.request.use(config => {
+
+  if(getToken()){
+    config.headers['Authorization'] = 'Bearer ' + getToken()
+  }
+  return config   
 }, error => {
+  console.log('请求出错了')
   return Promise.reject(error);
 })
 
-// 添加一个响应拦截器
-axios.interceptors.response.use(response => {
-  return response.data     // 其他的不要了，只拿data就好
-}, error => {
-  console.log(error.response)
-  if (error.response.status === 401) {
-    window.location.pathname = '/login'
-  }
-  // ......在做别的统一处理
-  return Promise.reject(error);
+// 添加一个响应拦截器 respone
+axios.interceptors.response.use(
+  response => {
+    return Promise.resolve(response)     
+  }, 
+  error => {
+    var message = (error.response && error.response.data.message) || (error.message.indexOf('timeout') > -1 ? '请求超时' : error.message)
+
+    if (error.response.data.code === '0000005') {
+        Modal.error({
+            title: '请求错误',
+            content: message,
+            onOk() { logout() }
+        })
+    } else {
+        Modal.error({
+            title: '请求错误',
+            content: message
+        })
+    }
+    return Promise.reject(error);
 });
 
-export default function request(url, options = {}) {
-  console.log(url)
-  return axios({
-    url: url,
-    method: 'post',
-    // 携带cookie信息
-    withCredentials: true,
-    ...options,
-    data: options.body,
-  })
-}
+export default service
