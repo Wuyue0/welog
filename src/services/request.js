@@ -1,5 +1,4 @@
 import axios from 'axios';
-import store from '@/store'
 import { getToken , removeToken } from '@/utils/auth';
 import { Modal } from 'antd'
 
@@ -10,7 +9,7 @@ import { Modal } from 'antd'
 const service = axios.create({
   // baseURL: baseURL, //api的baseurl
   timeout: 5000,
-  // withCredentials:true
+   withCredentials:true  //配置允许跨域携带cookie
 })
 
 // 添加一个请求拦截器  request
@@ -20,37 +19,29 @@ service.interceptors.request.use(config => {
   }
   return config   
 }, error => {
-  console.log('请求出错了')
+  console.warn('请求之前出错了',error)
   return Promise.reject(error);
 })
 
-
+//退出登录
 function logout() {
   removeToken()
   window.location.reload();
 }
 
-// 添加一个响应拦截器 respone
+// 添加一个响应拦截器 respone   注意在http码 在>=200 <300会调用resolve方法
 service.interceptors.response.use(
   response => {
+    console.warn('=============请求成功========',response)
     const res = response.data || {}
-
-     // 如果响应成功但结果不为0,则提示错误信息
+     // 如果响应成功但结果不为0,则提示错误信息  代表用户名或者密码输入错误
     if (res.code !== 0) {
-       console.log('登录失败',res)
       return Promise.reject(res)
     }
-
     return res;
   }, 
   error => {
     const res = error.response || {}
-     /**
-     * 如果token失效,重新刷新页面。会触发beforeRouter钩子函数。
-     * 钩子函数里会请求`UserInfo`接口，因为token失效，会抛出401抛出异常，
-     * 捕获异常后就会清除本地`token`，然后跳转到登录页面。
-     */
-
     //提示后端抛出的异常信息
     const errMsg = (res.data && res.data.msg) || '发生未知的错误'
 
@@ -58,7 +49,9 @@ service.interceptors.response.use(
       Modal.error({
         title: '请求错误',
         content: errMsg,
-        onOk() { logout() }
+        onOk() { 
+          logout()
+         }
       })
     } else {
       Modal.error({

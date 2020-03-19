@@ -23,6 +23,7 @@ function* loginRequest(data) {
             }));
         }
     } catch (e) {
+        console.log('saga 捕获错误',e)
         yield put(loginFailure({
             code: e.code,
             msg: e.msg

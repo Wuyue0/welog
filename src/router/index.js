@@ -6,7 +6,6 @@ import { Login , ErrorPage} from './Router';
 
 @connect(
   state => {
-      console.log('111111111111111111',state)
       return {
           id_token : state.loginReducer.id_token
       }
@@ -17,12 +16,13 @@ class BasicRoute extends Component {
       return (
           <Router>
               <Switch>
-                  <Route exact path="/" render={ () => <Redirect to="/login" push/> } />
+                  <Route exact path="/" render={ () => <Redirect to="/apply" push/> } />
                   <Route path="/404" component={ ErrorPage } />
                   <Route path="/login" render={() => {
-                      return this.props.id_token ?  <Redirect to="/layout" /> : <Login />
+                      console.log(1111111111111111111111111)
+                      return this.props.id_token ?  <Redirect to="/" /> : <Login />
                   }} />
-                  <Route path="/layout"  render={ () => <IndexLayout /> } />
+                  <Route  render={ () => <IndexLayout /> } />
               </Switch>
           </Router>
       )
