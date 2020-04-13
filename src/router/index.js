@@ -19,7 +19,6 @@ class BasicRoute extends Component {
                   <Route exact path="/" render={ () => <Redirect to="/apply" push/> } />
                   <Route path="/404" component={ ErrorPage } />
                   <Route path="/login" render={() => {
-                      console.log(1111111111111111111111111)
                       return this.props.id_token ?  <Redirect to="/" /> : <Login />
                   }} />
                   <Route  render={ () => <IndexLayout /> } />

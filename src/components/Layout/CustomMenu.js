@@ -85,7 +85,7 @@ class CustomMenu extends Component {
 
     renderSubMenu = ({key, imgUrl, selectedImgUrl, title, subs}) => {
         return (
-            <Menu.SubMenu key={key} title={<span>{icon && <Icon type={icon}/>}<span>{title}</span></span>}>
+            <Menu.SubMenu key={key} title={<span>{title}</span>}>
                 {
                     subs && subs.map(item => {
                         return item.subs && item.subs.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
