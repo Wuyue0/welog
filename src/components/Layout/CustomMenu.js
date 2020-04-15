@@ -46,6 +46,8 @@ class CustomMenu extends Component {
     }
 
     onOpenChange = (openKeys) => {
+
+        console.log('当前submenu菜单项',openKeys)
         //此函数的作用只展开当前父级菜单（父级菜单下可能还有子菜单）
         if (openKeys.length === 0 || openKeys.length === 1) {
             this.setState({
@@ -70,12 +72,16 @@ class CustomMenu extends Component {
         }
     }
 
-    renderMenuItem = ({key, imgUrl, selectedImgUrl, title, name}) => {
-        console.log(imgUrl)
+    //一级菜单
+    renderMenuItem = ({key, title, imgUrl, selectedImgUrl, name}) => {
+
+        
         return (
             <Menu.Item key={key}>
                 <Link to={key}>
                     {/*{icon && <Icon type={icon}/>}*/}
+
+                    <HomeTwoTone />
                     {imgUrl && <span className={name} style={{backgroundImage: 'url(' + imgUrl + ')'}}/>}
                     <span>{title}</span>
                 </Link>
@@ -83,6 +89,7 @@ class CustomMenu extends Component {
         )
     }
 
+    //渲染含有submenu
     renderSubMenu = ({key, imgUrl, selectedImgUrl, title, subs}) => {
         return (
             <Menu.SubMenu key={key} title={<span>{title}</span>}>

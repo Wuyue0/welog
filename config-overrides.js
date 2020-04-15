@@ -15,7 +15,7 @@ module.exports = override(
     addLessLoader({
       javascriptEnabled: true,
       //下面这行很特殊，这里是更改主题的关键，这里我只更改了主色，当然还可以更改其他的，下面会详细写出。
-      modifyVars: { "@primary-color": "#1DA57A"},
+      // modifyVars: { "@primary-color": "#1DA57A"},
       localIdentName: "[local]--[hash:base64:5]"
     })
 )

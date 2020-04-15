@@ -16,7 +16,7 @@ class BasicRoute extends Component {
       return (
           <Router>
               <Switch>
-                  <Route exact path="/" render={ () => <Redirect to="/apply" push/> } />
+                  <Route exact path="/" render={ () => <Redirect to="/home" push/> } />
                   <Route path="/404" component={ ErrorPage } />
                   <Route path="/login" render={() => {
                       return this.props.id_token ?  <Redirect to="/" /> : <Login />

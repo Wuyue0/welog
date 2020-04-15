@@ -23,7 +23,7 @@ class ContentMain extends Component {
         return (
             <div style={{padding: '20px 32px'}}>
                 <Switch>
-                    <PrivateRoute exact path='/apply' component={ Apply }/>
+                    <PrivateRoute exact path='/home' component={ Apply }/>
                     <PrivateRoute exact path='/case' component={ Case }/>
                     <Route render={ () => <Redirect to="/404" /> } />
                     <Redirect exact from='/' to='/apply'/>
@@ -37,7 +37,6 @@ export default ContentMain
 
 
 function Apply(props){
-    console.log(111111111111111,props)
     return <div>apply 页面</div>
 }
 
