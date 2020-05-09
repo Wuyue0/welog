@@ -1,12 +1,13 @@
 import React , { Component } from 'react';
-import { Layout , Menu , Row, Col } from 'antd';
+import { Layout , Row, Col } from 'antd';
 import {  MenuUnfoldOutlined,
           MenuFoldOutlined,
           UserOutlined,
-          VideoCameraOutlined,
-          UploadOutlined,
           HeartTwoTone,
-          HeartFilled
+          HomeOutlined, 
+          ForkOutlined, 
+          TagOutlined, 
+          MessageOutlined,
 } from '@ant-design/icons';
 import ContentMain from '@/components/Layout/ContentMain';
 import CustomMenu from '@/components/Layout/CustomMenu';
@@ -20,33 +21,36 @@ const menus = [
     {
         key: '/home',
         title: '首页',
-        imgUrl: require('@/assets/imgs/common/icon_apply.png'),
-        selectedImgUrl: require('@/assets/imgs/common/icon_apply_selected.png'),
-        name: 'apply-item'
+        icon: <HomeOutlined/>,
+        name: '/home'
     },
     {
         key: '/archives',
-        title: '维权案件',
-        imgUrl: require('@/assets/imgs/common/icon_case.png'),
-        selectedImgUrl: require('@/assets/imgs/common/icon_case_selected.png'),
-        name: 'case-item'
+        title: '归档',
+        icon: <ForkOutlined/>,
+        name: '/archives'
     },
 
     {
-        key: '/case',
-        title: '维权案件',
-        imgUrl: require('@/assets/imgs/common/icon_case.png'),
-        selectedImgUrl: require('@/assets/imgs/common/icon_case_selected.png'),
-        name: 'case-item'
+        key: '/categories',
+        title: '标签',
+        icon: <TagOutlined />,
+        name: '/categories'
     },
 
 
     {
-        key: '/case',
-        title: '维权案件',
-        imgUrl: require('@/assets/imgs/common/icon_case.png'),
-        selectedImgUrl: require('@/assets/imgs/common/icon_case_selected.png'),
-        name: 'case-item'
+        key: '/leavemsg',
+        title: '留言',
+        icon: <MessageOutlined />,
+        name: '/leavemsg'
+    },
+
+    {
+        key: '/about',
+        title: '关于',
+        icon: <UserOutlined />,
+        name: '/about'
     },
 ]
 
@@ -101,20 +105,7 @@ class IndexLayout extends Component {
                         </div>
 
                         <CustomMenu menus={menus}/>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1">
-                                <UserOutlined />
-                                <span>nav 1</span>
-                            </Menu.Item>
-                            <Menu.Item key="2">
-                                <VideoCameraOutlined />
-                                <span>nav 2</span>
-                            </Menu.Item>
-                            <Menu.Item key="3">
-                                <UploadOutlined />
-                                <span>nav 3</span>
-                            </Menu.Item>
-                        </Menu>
+
                     </Sider>
                     <Layout className="site-layout-content">
 
@@ -129,10 +120,7 @@ class IndexLayout extends Component {
                         </Content>
 
                     </Layout>
-                    
-                    
-
-
+            
                 </Layout>
             </Layout>
         )

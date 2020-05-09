@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Icon } from  'antd'
+import { Menu } from  'antd';
 
 //将数据抽离出来，通过传递数据去渲染
 @withRouter
@@ -73,16 +73,11 @@ class CustomMenu extends Component {
     }
 
     //一级菜单
-    renderMenuItem = ({key, title, imgUrl, selectedImgUrl, name}) => {
-
-        
+    renderMenuItem = ({key, title, icon, name}) => {
         return (
-            <Menu.Item key={key}>
+            <Menu.Item key={name}>
                 <Link to={key}>
-                    {/*{icon && <Icon type={icon}/>}*/}
-
-                    <HomeTwoTone />
-                    {imgUrl && <span className={name} style={{backgroundImage: 'url(' + imgUrl + ')'}}/>}
+                    {icon}
                     <span>{title}</span>
                 </Link>
             </Menu.Item>
@@ -102,14 +97,19 @@ class CustomMenu extends Component {
         )
     }
 
+    handleClick=(e)=>{
+        this.setState({
+            selectedKeys: [e.key],
+        });
+    }
+
     render() {
         const {openKeys, selectedKeys} = this.state
         return (
             <Menu
-                onOpenChange={this.onOpenChange}
-                onClick={({key}) => this.setState({selectedKeys: [key]})}
+                onClick={this.handleClick}
                 openKeys={openKeys}
-                selectedKeys={selectedKeys}
+                selectedKeys={ selectedKeys }
                 theme={this.props.theme ? this.props.theme : 'dark'}
                 mode='inline'>
                 {
@@ -122,4 +122,4 @@ class CustomMenu extends Component {
     }
 }
 
-export default CustomMenu
+export default CustomMenu;

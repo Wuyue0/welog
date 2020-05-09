@@ -3,7 +3,7 @@ import './style.css'
 
 class ErrorPage extends Component {
   componentDidMount(){
-    this.error404()
+    this.error404();
   }
   componentWillUnmount(){
     window.cancelAnimationFrame(this.myReq)

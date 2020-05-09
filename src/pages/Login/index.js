@@ -66,6 +66,8 @@ class Login extends Component {
     //   .then(res=>{
     //       console.log('res=>',res);            
     //   })
+
+    console.log('从哪里来的',this.props)
   }
 
   render() {

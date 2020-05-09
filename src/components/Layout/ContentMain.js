@@ -3,7 +3,6 @@ import { withRouter, Switch, Redirect, Route } from 'react-router-dom'
 // import AsyncComponent from '@/utils/asyncComponent';
 import PrivateRoute from '@/components/PrivateRoute';
 
-
 // const Apply = (props) => (
 //     <AsyncComponent load={() => import(/* webpackChunkName: "apply" */'@/pages/Apply')}>
 //             {(Apply) => <Apply {...props}/>}
@@ -23,23 +22,38 @@ class ContentMain extends Component {
         return (
             <div style={{padding: '20px 32px'}}>
                 <Switch>
-                    <PrivateRoute exact path='/home' component={ Apply }/>
-                    <PrivateRoute exact path='/case' component={ Case }/>
+
+                    <PrivateRoute exact path='/archives' component={ Archives }/>
+                    <PrivateRoute exact path='/categories' component={ Categories }/>
+                    <PrivateRoute exact path='/leavemsg' component={ Leavemsg }/>
+                    <PrivateRoute exact path='/about' component={ About }/>
                     <Route render={ () => <Redirect to="/404" /> } />
-                    <Redirect exact from='/' to='/apply'/>
+                    <Redirect exact from='/' to='/archives'/>
                 </Switch>
             </div>
         )
     }
 }
 
-export default ContentMain
+export default ContentMain;
 
 
-function Apply(props){
-    return <div>apply 页面</div>
+function Archives(){
+    return <div> Archives页面</div>
 }
 
-function Case(){
-    return <div>Case 页面</div>
+
+
+function Categories(){
+    return <div>Categories 页面</div>
+}
+
+
+function Leavemsg(){
+    return <div>我是留言界面</div>
+}
+
+
+function About(){
+    return <div>我是about页面</div>
 }

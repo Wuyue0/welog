@@ -2,7 +2,9 @@ import React, { Component }  from 'react';
 import IndexLayout from '@/components/Layout/index';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch , Redirect} from 'react-router-dom';
-import { Login , ErrorPage} from './Router';
+import { Home , Login , ErrorPage } from './Router';
+
+import { getToken } from '@/utils/auth'
 
 @connect(
   state => {
@@ -16,16 +18,16 @@ class BasicRoute extends Component {
       return (
           <Router>
               <Switch>
-                  <Route exact path="/" render={ () => <Redirect to="/home" push/> } />
-                  <Route path="/404" component={ ErrorPage } />
-                  <Route path="/login" render={() => {
-                      return this.props.id_token ?  <Redirect to="/" /> : <Login />
-                  }} />
-                  <Route  render={ () => <IndexLayout /> } />
+                    <Route exact path="/" render={ () => <Redirect to="/home"/> } />
+                    <Route path="/home" component={Home} />
+                    <Route path="/login" render={() => {
+                        return !!getToken() ?  <Redirect to="/archives" /> : <Login />
+                    }} />
+                    <Route path="/404" component={ ErrorPage } />
+                    <Route  render={ () =>{return  <IndexLayout />}} />
               </Switch>
           </Router>
       )
   }
 }
 export default BasicRoute;
-  
