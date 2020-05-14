@@ -3,15 +3,13 @@ import AsyncComponent from '@/utils/asyncComponent';
 
 
 //首页
-// export const Home = (props) => (
-//         <AsyncComponent load={() => import(/* webpackChunkName: "home" */'@/pages/Home')}>
-//                 {(Home) => <Home {...props}/>}
-//         </AsyncComponent>
-// );       
+export const Home = (props) => (
+        <AsyncComponent load={() => import(/* webpackChunkName: "home" */'@/pages/Home')}>
+                {(Home) => <Home {...props}/>}
+        </AsyncComponent>
+);  
 
-export const Home = ()=>{
-        return <div>123123</div>
-}
+
 
 
 //登录界面

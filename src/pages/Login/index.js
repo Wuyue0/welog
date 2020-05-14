@@ -4,7 +4,7 @@ import Background from '@/components/Background';
 import { connect } from 'react-redux';
 import { loginRequest } from '@/store/actions/login';
 import { withRouter } from 'react-router'
-import './index.less'
+import './index.less';
 
 
 const imgBacUrl = require('@/assets/imgs/login/login_bg.png')
