@@ -3,9 +3,7 @@ import IndexLayout from '@/components/Layout/index';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch , Redirect} from 'react-router-dom';
 import { Home , Login , ErrorPage } from './Router';
-
-import { getToken } from '@/utils/auth'
-
+import { getToken } from '@/utils/auth';
 @connect(
   state => {
       return {

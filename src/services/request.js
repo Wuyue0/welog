@@ -7,8 +7,8 @@ import { Modal } from 'antd'
 
 
 const service = axios.create({
-  // baseURL: baseURL, //api的baseurl
-  timeout: 5000,
+   // baseURL: baseURL, //api的baseurl
+   timeout: 5000,
    withCredentials:true  //配置允许跨域携带cookie
 })
 
