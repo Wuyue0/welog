@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { getToken , removeToken } from '@/utils/auth';
-import { Modal } from 'antd'
 
 
 // const baseURL = process.env.NODE_ENV === 'development' ? '/api':'';
@@ -8,7 +7,7 @@ import { Modal } from 'antd'
 
 const service = axios.create({
   // baseURL: baseURL, //api的baseurl
-  timeout: 5000,
+   timeout: 5000,
    withCredentials:true  //配置允许跨域携带cookie
 })
 
