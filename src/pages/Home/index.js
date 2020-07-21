@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import style from  './style.module.less';
 
 
-const imgBacUrl = require('@/assets/home_bg.jpg')
+const imgBacUrl = require('@/assets/home_bg.jpg');
+
 class  Home extends Component{
     constructor(props){
         super(props);
@@ -44,9 +45,8 @@ class  Home extends Component{
 
                 <div id="navgation" className={`${style.navgation} ${switchMenu ? style.navgation_open: style.navgation_close}`}>
                     <ul className={style.point}>
-                        {/* <li><Link to="/home">首页</Link></li> */}
-                        {/* <li><Link to="/home">博客</Link></li>
-                        <li><Link to="/leavemsg">留言</Link></li> */}
+                        <li><Link to="/home">博客</Link></li>
+                        <li><Link to="/leavemsg">留言</Link></li>
                         <li><Link to="/login">登录</Link></li>
                     </ul>
 

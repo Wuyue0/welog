@@ -1,6 +1,6 @@
 // saga模块化引入
 import {put, call, take, fork} from 'redux-saga/effects'
-import * as api from '@/services/login.servicers.js'
+import * as api from '@/services/login.services.js'
 import * as Login from '../constants';
 import { loginSuccess, loginFailure } from '../actions/login';
 import { setToken } from '@/utils/auth'
@@ -33,9 +33,9 @@ function* loginRequest(data) {
 
 //watcher saga 监听actions
 export function* loginSagas() {
-
     while (true) {
         const resData = yield take(Login.LOGIN_REQUEST);
+        console.log('saga执行程序')
         yield fork(loginRequest, resData.payload);
     }
 

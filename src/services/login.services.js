@@ -1,4 +1,4 @@
-import request from './request'
+import request from './request';
 
 
 //测试用的接口

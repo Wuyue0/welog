@@ -6,7 +6,7 @@ import { loginRequest } from '@/store/actions/login';
 import { withRouter } from 'react-router'
 import './index.less';
 
-import * as api from '@/services/login.servicers.js'
+import * as api from '@/services/login.services.js'
 
 
 const imgBacUrl = require('@/assets/login_bg_two.jpg')
