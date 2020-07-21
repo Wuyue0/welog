@@ -8,10 +8,6 @@ class Background extends React.Component {
     static propTypes = {
         url: PropTypes.string
     }
-    static defaultProps = {
-        url: 'https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/bg1.jpg?raw=true',
-    }
-
     constructor(props) {
         super(props)
         this.points = []    //背景粒子
@@ -232,7 +228,8 @@ const styles = {
         left: '0',
         width: '100vw',
         height: '100vh',
-        backgroundSize: '100% 100%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
     },
     canvasStyle: {
         display: 'block',   //防止全屏的canvas出现滚动条

@@ -6,8 +6,10 @@ import { loginRequest } from '@/store/actions/login';
 import { withRouter } from 'react-router'
 import './index.less';
 
+import * as api from '@/services/login.servicers.js'
 
-const imgBacUrl = require('@/assets/imgs/login/login_bg.png')
+
+const imgBacUrl = require('@/assets/login_bg_two.jpg')
 
 const layout = {
   labelCol: { span: 8 },
@@ -61,15 +63,6 @@ class Login extends Component {
     console.log('Failed:', errorInfo);
   };
 
-  componentDidMount = async () => {
-    //   axios.get('/users/hello')
-    //   .then(res=>{
-    //       console.log('res=>',res);            
-    //   })
-
-    console.log('从哪里来的',this.props)
-  }
-
   render() {
     return (
       <Fragment>
@@ -79,7 +72,7 @@ class Login extends Component {
 
 
                 <section className="v-left">
-                    <img src={require('@/assets/imgs/login/logo_icon.png')} alt="React"/>
+                    <img src={require('@/assets/logo_icon.png')} alt="React"/>
                 </section>
 
 
