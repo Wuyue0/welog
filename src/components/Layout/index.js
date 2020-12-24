@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import { Layout , Row, Col } from 'antd';
+import { Layout , Row, Col, Input } from 'antd';
 import {  MenuUnfoldOutlined,
           MenuFoldOutlined,
           UserOutlined,
@@ -8,12 +8,16 @@ import {  MenuUnfoldOutlined,
           ForkOutlined, 
           TagOutlined, 
           MessageOutlined,
+          HomeFilled,
+          UnorderedListOutlined,
+          KeyOutlined
 } from '@ant-design/icons';
 import ContentMain from '@/components/Layout/ContentMain';
 import CustomMenu from '@/components/Layout/CustomMenu';
 import './index.less';
 
 const { Header, Sider, Content } = Layout;
+const { Search } = Input;
 
 
 
@@ -73,56 +77,35 @@ class IndexLayout extends Component {
 
     render(){
         return (
-            <Layout className="main-view">
-
+            <div  id="allLayOut">
                 {/* 头部导航栏 */}
-                <Header className="site-layout-header" style={{ padding: 0 }}>
-                    <Row>
-                        <Col span={4}>
-                            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                                    className: 'trigger',
-                                    onClick: this.toggle,
-                                    })} 
-                        </Col>
-                        <Col span={16}>
-                            <div className="header-content">
-                                <HeartTwoTone twoToneColor="#eb2f96" />
-                                <div className="side-top-name">
-                                    吴越的博客
-                                </div>
+                <Header id="" className="site-layout-header">
+
+
+                  <div className="header-left">
+                    <a className="navbar-brand">
+                      <HomeFilled />
+                      <span className="m-l-xs">guitu18.com</span>
+                    </a>
+                  </div>
+
+                  <div className="header-right">
+                            <div className="header-right-search">
+                              <Search className="header-search" placeholder="input search text"/>
                             </div>
-                        </Col>
-                        <Col span={4}>内容待定</Col>
-                    </Row>
-                    
+
+                            <div className="header-right-player">
+                                <ul className="nav-bar-right">
+                                  <li><a href="#">播放器</a></li>
+                                  <li><a href="#"><UnorderedListOutlined /></a></li>
+                                  <li><a href="#"><MessageOutlined /></a></li>
+                                  <li><a href="#"><KeyOutlined /></a></li>
+                                </ul>
+                            </div>
+
+                          </div>
                 </Header>
-
-                
-                <Layout>
-                    <Sider className="side-bar" trigger={null} collapsible collapsed={this.state.collapsed}>
-                        <div className="side-top">
-                            <HeartTwoTone twoToneColor="#eb2f96" />
-                        </div>
-
-                        <CustomMenu menus={menus}/>
-
-                    </Sider>
-                    <Layout className="site-layout-content">
-
-                        <Content  className="site-layout-background"
-                            style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
-                            }}
-                        >
-                            <ContentMain/>
-                        </Content>
-
-                    </Layout>
-            
-                </Layout>
-            </Layout>
+            </div>
         )
     }
 }

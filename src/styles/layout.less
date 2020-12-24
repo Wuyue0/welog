@@ -1,0 +1,34 @@
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: @screen-sm-min) { 
+  .app-container{
+    width: 750px;
+    .nav-bar{
+      max-width: 750px;
+    }
+    .box-shadow-bottom-lg {
+      box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
+      -webkit-box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
+    }
+  }
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: @screen-md-min) {
+  .app-container{
+    width: 970px;
+    .nav-bar{
+      max-width: 970px;
+    }
+  }
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: @screen-lg-min) { 
+  .app-container{
+    width: 1170px;
+    .nav-bar{
+      max-width: 1170px;
+    }
+  }
+  
+}

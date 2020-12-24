@@ -1,7 +1,65 @@
-  .main-view{
-    height: 100vh;
+  .allLayOut{
+    // height: 100vh;
+    width: 1170px;
+    margin: 0 auto;
+    padding-top:50px;
+    box-shadow: 0 0 4px 3px rgba(0,0,0,.05);
     .site-layout-header {
-      background: #fff;
+      width: 1170px;
+      position: fixed;
+      top: 0;
+      height: 50px !important;
+      line-height: 50px !important;
+      background-color: #f9f9f9;
+      box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
+      padding: 0px !important;
+      .header-left{
+        .navbar-brand{
+          color: #777;
+          display: inline-block;
+          padding: 0 20px;
+          font-size: 19px;
+          font-weight: 700;
+          line-height: 50px;
+          text-align: center;
+          .m-l-xs{
+            margin-left: 5px;
+          }
+        }
+      }
+
+      .header-right{
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .header-right-search{
+          // .header-search{
+          //   display: block;
+          //   // vertical-align: middle;
+          // }
+        }
+
+        .header-right-player{
+          .nav-bar-right{
+            list-style: none;
+            li{
+              float: left;
+              a {
+                position: relative;
+                display: block;
+                padding: 0px 16px;
+              }
+            }
+            &::after{
+              content:"";
+              clear:both;/*清除浮动*/
+              display:block;/*确保该元素是一个块级元素*/
+            }
+          }
+        }
+      }
+      
       .trigger{
         font-size: 18px;
         line-height: 64px;

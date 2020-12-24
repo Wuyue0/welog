@@ -9,6 +9,7 @@
     "antd": "^4.0.0",
     "axios": "^0.19.2",
     "babel-plugin-import": "^1.13.0",
+    "bootstrap": "3",
     "caniuse-lite": "^1.0.30001157",
     "crypto-js": "^4.0.0",
     "customize-cra": "^1.0.0-alpha.0",

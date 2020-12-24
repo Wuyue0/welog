@@ -1,76 +1,59 @@
-import React , { Component } from 'react';
-import { Link } from 'react-router-dom';
-import style from  './style.module.less';
+import React, { Component } from 'react'
+import './layout.less';
+import { Layout , Row, Col, Input } from 'antd';
+import {  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  HeartTwoTone,
+  HomeOutlined, 
+  ForkOutlined, 
+  TagOutlined, 
+  MessageOutlined,
+  HomeFilled,
+  UnorderedListOutlined,
+  KeyOutlined
+} from '@ant-design/icons';
 
 
-const imgBacUrl = require('@/assets/home_bg.jpg');
+const { Header, Sider, Content } = Layout;
+const { Search } = Input;
 
-class  Home extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            switchMenu: false
-        }
-        this.clickMenu = this.clickMenu.bind(this)
-    }
-
-
-    componentDidMount(){
-        this.menu.addEventListener('click',this.clickMenu)
-    }
-
-
-    clickMenu(){
-        this.setState((state)=>{
-            return {
-                switchMenu: !state.switchMenu
-            }
-        })
-    }
-
-
-    componentWillUnmount(){
-        this.menu.removeEventListener('click',this.clickMenu)
-    }
-
-    render(){
-        const { switchMenu } = this.state
-        return (
-            <div>
-                <div id={style.menu} className={`hover_animation ${switchMenu ? style.menu_close: style.menu_open}`} data-mark={ switchMenu }  ref = { menu => this.menu = menu }>
-                    <span></span>
-                    <span></span>
-                    <span></span>  
-                </div>
-
-                <div id="navgation" className={`${style.navgation} ${switchMenu ? style.navgation_open: style.navgation_close}`}>
-                    <ul className={style.point}>
-                        <li><Link to="/home">博客</Link></li>
-                        <li><Link to="/leavemsg">留言</Link></li>
-                        <li><Link to="/login">登录</Link></li>
-                    </ul>
-
-                    <div className={style.logo}>
-                        <Link to="/home">Mr.Yss</Link>
-                    </div>
-                </div>
-
-                <div className={style.section} id={style.section1} style={{backgroundImage:`url(${imgBacUrl})`}}>
-                    <div className={style.tablecell}>
-                        <div className={style.page1}>
-                            <div className={style.nav}>
-                                <h1>燕 十 三</h1>
-                                <p> 剑气纵横三万里,一剑光寒十九洲</p>
-                                <Link to="/home" style={{marginTop: '20px'}} className={`${style.layuiBtn} ${style.layuiBtnNormal}`}>Enter Blog</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+class Home extends Component {
+  render () {
+    return (
+      <div className="app-container">
+          {/* 头部导航栏 */}
+          <header id="header" className="nav-bar box-shadow-bottom-lg">
+            <div className="nav-bar-left bg-white">
+              <a className="nav-bar-title">
+                <HomeFilled />
+                <span className="m-l-xs">guitu18.com</span>
+              </a>
             </div>
-        )
-    }
+
+            <div className="nav-bar-right bg-white">
+                    
+                      <div className="nav-bar-search">
+                        <Search className="header-search" placeholder="input search text"/>
+                      </div>
+
+                      <div className="nav-bar-login">
+                          <ul>
+                            <li><a href="#">播放器</a></li>
+                            <li><a href="#"><UnorderedListOutlined /></a></li>
+                            <li><a href="#"><MessageOutlined /></a></li>
+                            <li><a href="#"><KeyOutlined /></a></li>
+                          </ul>
+                      </div>
+
+              </div>
+          </header>
+
+
+        
+      </div>
+    )
+  }
 }
 
-
-export default Home;
+export default Home

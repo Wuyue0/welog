@@ -3,22 +3,36 @@ import AsyncComponent from '@/utils/asyncComponent';
 
 
 //首页
-export const Home = (props) => (
-        <AsyncComponent load={() => import(/* webpackChunkName: "home" */'@/pages/Home')}>
-                {(Home) => <Home {...props}/>}
-        </AsyncComponent>
-);  
+const BigScreen = (props) => (
+    <AsyncComponent load={() => import(/* webpackChunkName: "bigScreen" */'@/pages/BigScreen')}>
+            {(BigScreen) => <BigScreen {...props}/>}
+    </AsyncComponent>
+); 
+
+// 主界面
+const Home = (props) => (
+  <AsyncComponent load={() => import(/* webpackChunkName: "Home" */'@/pages/Home')}>
+            {(Home) => <Home {...props}/>}
+  </AsyncComponent>
+)
 
 //登录界面
-export const Login = (props) => (
-        <AsyncComponent load={() => import(/* webpackChunkName: "login" */'@/pages/Login')}>
-                {(Login) => <Login {...props}/>}
-        </AsyncComponent>
+const Login = (props) => (
+  <AsyncComponent load={() => import(/* webpackChunkName: "login" */'@/pages/Login')}>
+          {(Login) => <Login {...props}/>}
+  </AsyncComponent>
 );
 
 //错误界面404
-export const ErrorPage = (props)=>(
-        <AsyncComponent load={() => import(/* webpackChunkName: "errorPage" */'@/pages/ErrorPage')}>
-               {(ErrorPage) => <ErrorPage {...props}/>}
-        </AsyncComponent>
+const ErrorPage = (props)=>(
+  <AsyncComponent load={() => import(/* webpackChunkName: "errorPage" */'@/pages/ErrorPage')}>
+          {(ErrorPage) => <ErrorPage {...props}/>}
+  </AsyncComponent>
 )
+
+export { 
+  BigScreen,
+  Home,
+  Login,
+  ErrorPage
+}
