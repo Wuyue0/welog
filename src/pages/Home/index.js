@@ -63,8 +63,7 @@ class Home extends Component {
               </div>
             </div>
             {/* 链接部分 */}
-            <div className="nav-bar-login">
-              <ul>
+            <ul className="nav navbar-nav navbar-right">
                 {/* 播放器 */}
                 <li className="music-box hidden-xs hidden-sm">
                   <div id="skPlayer">
@@ -141,7 +140,7 @@ class Home extends Component {
                 </li>
                 {/* 播放列表 */}
                 <li className="dropdown">
-                  <a className="bg-white">
+                  <a href="/#" className="bg-white feathericons">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
                       width="16px" 
@@ -160,7 +159,7 @@ class Home extends Component {
                 </li>
                 {/* 闲言碎语 */}
                 <li className="dropdown">
-                  <a className="bg-white">
+                  <a href="/#" className="bg-white feathericons">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     width="16px" 
@@ -179,7 +178,7 @@ class Home extends Component {
                 </li>
                 {/* 登录部分 */}
                 <li className="dropdown" id="easyLogin">
-                  <a className="bg-white dropdown-toggle clear">
+                  <a className="bg-white feathericons dropdown-toggle clear" data-toggle="dropdown">
                     <span className="feathericons">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -198,9 +197,32 @@ class Home extends Component {
                     </span>
                     <b className="caret"></b>
                   </a>
+                  {/* 登录部分界面 */}
+                  <div className="dropdown-menu w-lg wrapper bg-white animated fadeIn">
+                    <form id="Login_form">
+                      {/* 用户名 */}
+                      <div className="form-group">
+                        <label for="navbar-login-user">用户名</label>
+                        <input type="text" name="name" id="navbar-login-user" className="form-control" placeholder="用户名或电子邮箱"/>
+                      </div>
+                      {/* 密码 */}
+                      <div className="form-group">
+                        <label for="navbar-login-password">密码</label>
+                        <input type="password" name="password" id="navbar-login-password" className="form-control" placeholder="密码"/>
+                      </div>
+
+                      <button type="submit" style={{width: '100%'}} id="login-submit" name="submitLogin" className="btn-rounded box-shadow-wrap-lg btn-gd-primary padder-lg">
+                          <span>登录</span>
+                          {/* <span className="text-active">登录中...</span>
+                          <span className="banLogin_text">刷新页面后登录</span>
+                          <i className="animate-spin  fontello fontello-spinner hide" id="spin-login"></i>
+                          <i className="animate-spin fontello fontello-refresh hide" id="ban-login"></i> */}
+                      </button>
+                      {/* <input type="hidden" name="referer" value="https://www.guitu18.com" data-current-url="value"/> */}
+                    </form>
+                  </div>
                 </li>
               </ul>
-            </div>
           </div>
         </header>
 

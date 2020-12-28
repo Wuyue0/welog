@@ -37,6 +37,10 @@
         #search_input{
           border: none !important;
           width: 137px;
+          &:focus{
+            border: none;
+            box-shadow:  0 0 0 2px #BDE7FF,0 0 0 2px #BDE7FF;
+          }
           &:hover{
             background: #e0e6ed;
             border-color: #e0e6ed;
@@ -45,15 +49,9 @@
         }
         #search_submit button {
           color: #000;
-          span{
-            font-size: 16px;
-          }
         }
       }
 
-      .nav-bar-login{
-        height: 50px;
-        margin-right: -15px;
         .music-box{
           width: 200px;
           height: 50px;
@@ -178,22 +176,6 @@
             }
           }
         }
-        ul{
-          li{
-            float: left;
-            a {
-              position: relative;
-              display: block;
-              padding: 0px 16px;
-            }
-          }
-          &::after{
-            content:"";
-            clear:both;/*清除浮动*/
-            display:block;/*确保该元素是一个块级元素*/
-          }
-        }
-      }
     }
   }
 }

@@ -6,6 +6,7 @@ import BasicRoute from './router';
 import * as serviceWorker from './serviceWorker';
 import './index.less';
 
+
 ReactDOM.render(
     <Provider store={store}> 
         <BasicRoute />
