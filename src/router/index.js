@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import IndexLayout from '@/components/Layout/index';
+// import IndexLayout from '@/components/Layout/index';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch , Redirect} from 'react-router-dom';
 import { BigScreen , Home, Login , ErrorPage } from './Router';

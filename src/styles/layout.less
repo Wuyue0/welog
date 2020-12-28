@@ -4,6 +4,12 @@
     width: 750px;
     .nav-bar{
       max-width: 750px;
+      .nav-bar-left{
+        width: 200px;
+      }
+      .nav-bar-right{
+        margin-left:200px;
+      }
     }
     .box-shadow-bottom-lg {
       box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
@@ -18,6 +24,12 @@
     width: 970px;
     .nav-bar{
       max-width: 970px;
+      .nav-bar-left{
+        width: 220px;
+      }
+      .nav-bar-right{
+        margin-left:220px;
+      }
     }
   }
 }
@@ -31,4 +43,14 @@
     }
   }
   
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1800px） */
+@media (min-width: 1800px){
+  .app-container{
+    width: 1300px;
+    .nav-bar{
+      max-width: 1300px;
+    }
+  }
 }

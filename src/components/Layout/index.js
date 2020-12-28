@@ -1,9 +1,7 @@
 import React , { Component } from 'react';
-import { Layout , Row, Col, Input } from 'antd';
-import {  MenuUnfoldOutlined,
-          MenuFoldOutlined,
+import { Layout , Input } from 'antd';
+import {  
           UserOutlined,
-          HeartTwoTone,
           HomeOutlined, 
           ForkOutlined, 
           TagOutlined, 
@@ -12,51 +10,51 @@ import {  MenuUnfoldOutlined,
           UnorderedListOutlined,
           KeyOutlined
 } from '@ant-design/icons';
-import ContentMain from '@/components/Layout/ContentMain';
-import CustomMenu from '@/components/Layout/CustomMenu';
+// import ContentMain from '@/components/Layout/ContentMain';
+// import CustomMenu from '@/components/Layout/CustomMenu';
 import './index.less';
 
-const { Header, Sider, Content } = Layout;
+const { Header } = Layout;
 const { Search } = Input;
 
 
 
-const menus = [
-    {
-        key: '/home',
-        title: '首页',
-        icon: <HomeOutlined/>,
-        name: '/home'
-    },
-    {
-        key: '/archives',
-        title: '归档',
-        icon: <ForkOutlined/>,
-        name: '/archives'
-    },
+// const menus = [
+//     {
+//         key: '/home',
+//         title: '首页',
+//         icon: <HomeOutlined/>,
+//         name: '/home'
+//     },
+//     {
+//         key: '/archives',
+//         title: '归档',
+//         icon: <ForkOutlined/>,
+//         name: '/archives'
+//     },
 
-    {
-        key: '/categories',
-        title: '标签',
-        icon: <TagOutlined />,
-        name: '/categories'
-    },
+//     {
+//         key: '/categories',
+//         title: '标签',
+//         icon: <TagOutlined />,
+//         name: '/categories'
+//     },
 
 
-    {
-        key: '/leavemsg',
-        title: '留言',
-        icon: <MessageOutlined />,
-        name: '/leavemsg'
-    },
+//     {
+//         key: '/leavemsg',
+//         title: '留言',
+//         icon: <MessageOutlined />,
+//         name: '/leavemsg'
+//     },
 
-    {
-        key: '/about',
-        title: '关于',
-        icon: <UserOutlined />,
-        name: '/about'
-    },
-]
+//     {
+//         key: '/about',
+//         title: '关于',
+//         icon: <UserOutlined />,
+//         name: '/about'
+//     },
+// ]
 
 class IndexLayout extends Component {
 
